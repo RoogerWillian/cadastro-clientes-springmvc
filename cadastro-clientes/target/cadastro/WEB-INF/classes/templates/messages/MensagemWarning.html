@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- Mensagem de sucesso -->
+<div class="alert alert-info alert-dismissible" role="alert"
+	th:if="${!#strings.isEmpty(mensagemInfo)}">
+	<button type="button" class="close" data-dismiss="alert"
+		aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> <span><strong
+		th:text="${mensagemW}"></strong></span>
+</div>
+</html>

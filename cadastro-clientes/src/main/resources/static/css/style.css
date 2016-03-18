@@ -1,0 +1,65 @@
+@CHARSET "ISO-8859-1";
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+/* Tela grande */
+@media ( min-width : 768px) {
+	.panel-default {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.alert {
+		margin-left: 10px;
+		margin-right: 10px;
+		margin-bottom: 5px;
+	}
+	.tabs-content {
+		margin: 5px;
+		padding: 15px;
+	}
+	.table-cadastro {
+		margin: 10px;
+	}
+}
+
+.content-tabs {
+	margin: 10px;
+}
+
+.tabs {
+	margin: 20px;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-brand {
+	padding-top: 12px;
+}
+
+.aw-title-panel {
+	float: left;
+	padding-top: 2px;
+}
+
+.fade.in {
+	opacity: 1;
+}
+
+.aw-link-panel {
+	float: right;
+	padding: 0px;
+	margin: 0px;
+}
+
+.input-width {
+	width: 5px;
+}
+
+.margin-icon {
+	margin-right: 4px;
+}
+
+.navbar li a {
+	font-weight: bolder;
+}

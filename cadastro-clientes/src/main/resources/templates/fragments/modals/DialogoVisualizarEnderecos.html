@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="modal fade" id="enderecos" tabindex="-1"
+	data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title"></h4>
+			</div>
+
+			<div class="modal-body">
+				<div class="table-responsive">
+					<table id="tableEnderecos"
+						class="table table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th class="col-sm-1 text-center">CEP</th>
+								<th class="col-sm-3">Logradouro</th>
+								<th class="col-sm-2">Bairro</th>
+								<th class="col-sm-1 text-center">Número</th>
+								<th class="col-sm-2">Cidade</th>
+								<th class="col-sm-1 text-center">Estado</th>
+								<th class="col-sm-1 text-center">Tipo</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr id="trAviso">
+								<td colspan="7">Está cliente não possui endereços</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal">
+					<span class="glyphicon glyphicon-ok"></span>Ok
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

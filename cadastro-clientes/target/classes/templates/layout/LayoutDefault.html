@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width"/>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+<title>Cadastro de clientes</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.min.css}" />
+</head>
+<body>
+
+	<header layout:include="/fragments/Cabecalho"></header>
+	
+	<section layout:fragment="conteudo"></section>
+
+	<script th:src="@{/js/jquery-1.12.1.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
+	<script th:src="@{/js/cadastro.js}"></script>
+	<script th:src="@{/js/telefones.js}"></script>
+	<script th:src="@{/js/enderecos.js}"></script>
+	<script th:src="@{/js/clientes.js}"></script>
+	<script th:src="@{/js/bootstrap-notify.min.js}"></script>
+	<script th:src="@{/js/jquery.maskedinput.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/layout/LayoutDefault">
+<head>
+</head>
+<section layout:fragment="conteudo">
+	<form th:action="@{/clientes}" method="POST" class="form-horizontal"
+		th:object="${cliente}">
+
+		<div layout:include="/messages/MensagemGeral"></div>
+		<div layout:include="/messages/MensagemErro"></div>
+		<div layout:include="/messages/MensagemWarning"></div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title aw-title-panel">
+						<strong>Novo cliente</strong>
+					</h1>
+
+					<a class="btn btn-link aw-link-panel" th:href="@{/clientes}">
+						Consulta de clientes </a>
+				</div>
+			</div>
+
+			<div class="panel-body">
+				<input type="hidden" th:field="*{id}" />
+				<!-- Primeira Div -->
+				<div class="col-sm-6">
+					<!-- Nome -->
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
+						<label for="nome" class="col-sm-2 control-label">Nome:</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-user"></span>
+								</div>
+								<input id="nome" class="form-control" type="text"
+									th:field="*{nome}" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Cpf -->
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('cpf')} ? 'has-error'">
+						<label for="campoCpf" class="col-sm-2 control-label">CPF:</label>
+						<div class="col-sm-5">
+							<input id="campoCpf" type="text" class="form-control"
+								th:field="*{cpf}" />
+						</div>
+					</div>
+
+					<!-- Email -->
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+						<label for="email" class="col-sm-2 control-label">E-mail:</label>
+						<div class="col-sm-6">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-folder-open"></span>
+								</div>
+								<input id="email" type="text" class="form-control"
+									th:field="*{email}" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Segunda Div -->
+				<div class="col-sm-6">
+
+					<!-- Data de cadastro -->
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('dataCadastro')} ? 'has-error'">
+						<label for="dataCadastro" class="col-sm-3 control-label">Data
+							de cadastro:</label>
+						<div class="col-sm-4">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</div>
+								<input type="text" class="form-control" id="dataCadastro"
+									th:field="*{dataCadastro}" readonly="readonly" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Data de nascimento -->
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('dataNascimento')} ? 'has-error'">
+						<label for="campoData" class="col-sm-3 control-label">Nascimento:</label>
+						<div class="col-sm-4">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</div>
+								<input type="text" class="form-control" id="campoData"
+									th:field="*{dataNascimento}" data-provide="datepicker"
+									data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+									data-date-autoclose="true" data-date-today-highlight="true"
+									data-date-orientation="auto" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Status -->
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('status')} ? 'has-error'">
+						<label for="status" class="col-sm-3 control-label">Status:</label>
+						<div class="col-sm-4">
+							<select class="form-control" th:field="|*{status}|">
+								<option value="" selected="selected">Selecione</option>
+								<option th:each="statusCliente : ${todosStatusCliente}"
+									th:value="${statusCliente}"
+									th:text="${statusCliente.descricao}"></option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="panel-footer">
+				<div class="clearfix">
+					<div class="aw-link-panel">
+						<button type="reset" class="btn btn-default">Limpar</button>
+						<button type="submit" class="btn btn-success">Salvar</button>
+					</div>
+
+					<div class="aw-title-panel">
+						<button id="btnAddTelefone" type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-plus margin-icon"></span>Adicionar
+							telefone
+						</button>
+						<button id="btnAddEndereco" type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-plus margin-icon"></span>Adicionar
+							endereço
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Telefone e endereços -->
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#telefones" data-toggle="tab">Telefones</a></li>
+					<li><a href="#enderecos" data-toggle="tab">Endereços</a></li>
+				</ul>
+
+				<div class="tab-content">
+
+					<div class="tab-pane fade in active" id="telefones">
+						<div class="table-responsive col-sm-6">
+							<table class="table table-bordered" style="margin-top: 15px">
+								<thead>
+									<tr>
+										<th class="col-sm-1">#</th>
+										<th class="col-sm-2">Número</th>
+										<th class="col-sm-1 text-center">Tipo</th>
+										<th class="col-sm-3">Cliente</th>
+										<th class="col-sm-1"></th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr th:each="tel : ${telefones}">
+										<td th:text="${tel.id}"></td>
+										<td th:text="${tel.numero}"></td>
+										<td class="text-center" th:text="${tel.tipo.descricao}"></td>
+										<td th:text="${cliente.nome}"></td>
+										<td class="text-center"><a class="btn btn-link btn-xs"
+											rel="tooltip" th:href="@{/telefones/{id}(id=${tel.id})}"
+											data-toogle="toolip" title="Editar telefone"> <span
+												class="glyphicon glyphicon-edit"></span>
+										</a> <a class="btn btn-link btn-xs" title="Excluir telefone"
+											data-placment="top" rel="tooltip" data-toggle="modal"
+											data-target="#confirmacaoExclusaoTelefone"
+											th:attr="data-id=${tel.id}, data-cliente=${tel.cliente.nome},
+													data-telefone=${tel.numero}">
+												<span class="glyphicon glyphicon-trash"></span>
+										</a></td>
+									</tr>
+
+									<tr th:if="${#lists.isEmpty(telefones)}">
+										<td colspan="5">Nenhum telefone foi adicionado até o
+											momento!</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="tab-pane fade" id="enderecos">
+						<div class="table-responsive">
+							<table class="table table-bordered" style="margin-top: 15px">
+								<thead>
+									<tr>
+										<th class="col-sm-1 text-center">CEP</th>
+										<th class="col-sm-3">Logradouro</th>
+										<th class="col-sm-2">Bairro</th>
+										<th class="col-sm-1 text-center">Número</th>
+										<th class="col-sm-2">Cidade</th>
+										<th class="col-sm-1 text-center">Estado</th>
+										<th class="col-sm-1 text-center">Tipo</th>
+										<th class="col-sm-1"></th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr th:each="end : ${enderecos}">
+										<td class="text-center" th:text="${end.cep}"></td>
+										<td th:text="${end.logradouro}"></td>
+										<td th:text="${end.bairro}"></td>
+										<td class="text-center" th:text="${end.numero}"></td>
+										<td th:text="${end.cidade}"></td>
+										<td class="text-center" th:text="${end.estado}"></td>
+										<td class="text-center" th:text="${end.tipo}"></td>
+										<td class="text-center"><a class="btn btn-link btn-xs"
+											rel="tooltip" th:href="@{/enderecos/{id}(id=${end.id})}"
+											data-toogle="toolip" title="Editar endereço"> <span
+												class="glyphicon glyphicon-edit"></span>
+										</a> <a class="btn btn-link btn-xs" title="Excluir endereço"
+											data-toggle="modal" data-placment="top" rel="tooltip"
+											data-target="#confirmacaoExclusaoEndereco"
+											th:attr="data-id=${end.id}, data-cliente=${end.cliente.nome},
+													data-logradouro=${end.logradouro}">
+												<span class="glyphicon glyphicon-trash"></span>
+										</a></td>
+
+									</tr>
+
+									<tr th:if="${#lists.isEmpty(enderecos)}">
+										<td colspan="8">Nenhum endereço foi adicionado até o
+											momento!</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</form>
+	<div layout:include="/fragments/modals/DialogoExclusaoTelefone"></div>
+	<div layout:include="/fragments/modals/DialogoExclusaoEndereco"></div>
+</section>
+</html>

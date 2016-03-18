@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/layout/LayoutDefault">
+<head>
+<title>Consulta de Clientes</title>
+</head>
+<section layout:fragment="conteudo">
+	<div layout:include="/messages/MensagemGeral"></div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h1 class="panel-title aw-title-panel">
+					<strong>Consulta de clientes</strong>
+				</h1>
+
+				<a class="btn btn-link aw-link-panel" th:href="@{/clientes/novo}">
+					Novo Cliente</a>
+			</div>
+		</div>
+
+		<div class="panel-body">
+
+			<form method="GET" class="form-horizontal" th:action="@{/clientes}"
+				th:object="${filtro}">
+				<div class="form-group">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input class="form-control" th:field="*{filtro}"
+								placeholder="Qual cliente você procura ?"/>
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-default"
+									data-toggle="popover" title="Info" data-placement="top"
+									data-content="Filtre aqui um cliente...">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th class="col-sm-1">#</th>
+							<th class="col-sm-3">Nome</th>
+							<th class="col-sm-2 text-left">CPF</th>
+							<th class="col-sm-1 text-center">Nascimento</th>
+							<th class="col-sm-1 text-center">Data de Cadastro</th>
+							<th class="col-sm-2">E-mail</th>
+							<th class="col-sm-1 text-center">Status</th>
+							<th class="col-sm-1"></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="cliente : ${clientes}">
+							<td th:text="${cliente.id}"></td>
+							<td th:text="${cliente.nome}"></td>
+							<td class="text-left" th:text="${cliente.cpf}"></td>
+							<td class="text-center" th:text="${{cliente.dataNascimento}}"></td>
+							<td class="text-center" th:text="${{cliente.dataCadastro}}"></td>
+							<td th:text="${cliente.email}"></td>
+							<td class="text-center"><span class="label"
+								th:text="${cliente.status}"
+								th:classappend="${cliente.ativo ? 'label-success' : 'label-danger'}"></span>
+							</td>
+
+							<td class="text-center">
+								<a class="btn btn-link btn-xs"
+								title="Visualizar telefones e endereços" rel="tooltip"
+								data-placment="top"> <span
+									class="glyphicon glyphicon-eye-open"></span>
+								</a> <a class="btn btn-link btn-xs" title="Editar" rel="tooltip"
+								data-placment="top"
+								th:href="@{/clientes/{id}(id=${cliente.id})}"> <span
+									class="glyphicon glyphicon-edit"></span>
+							</a> <a class="btn btn-link btn-xs" title="Excluir" rel="tooltip"
+								data-placment="top" data-toggle="modal"
+								data-target="#confirmacaoExclusaoModal"
+								th:attr="data-id=${cliente.id}, data-nome=${cliente.nome}">
+									<span class="glyphicon glyphicon-remove"></span>
+							</a></td>
+						</tr>
+
+						<tr>
+							<td th:if="${#lists.isEmpty(clientes)}" colspan="8">Não
+								existem clientes cadastrados!</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="clearfix">
+				<span class="aw-link-panel"> Total de registros: <strong
+					style="margin-left: 5px"> <span
+						th:text="${clientes.size()}"></span>
+				</strong>
+				</span>
+			</div>
+		</div>
+		<!-- Dialogo confirmacao exclusao -->
+		<div layout:include="/fragments/modals/DialogoConfirmacaoExclusao"></div>
+	</div>
+</section>
+</html>

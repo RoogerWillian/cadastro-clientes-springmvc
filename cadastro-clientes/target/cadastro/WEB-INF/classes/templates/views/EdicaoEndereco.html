@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/layout/LayoutDefault">
+<head>
+<title>Cadastro de endereco</title>
+</head>
+<section layout:fragment="conteudo">
+	<form th:action="@{/enderecos/save}" method="POST"
+		class="form-horizontal" th:object="${endereco}">
+		<div layout:include="/messages/MensagemErro"></div>
+		<div layout:include="/messages/MensagemGeral"></div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h1 class="panel-title">
+					<strong>Edição endereço</strong> <span
+						th:if="${!#strings.isEmpty(nomeCliente)}" class="separator">|</span>
+					<span style="margin-left: 10px" th:text="${nomeCliente}"></span>
+				</h1>
+			</div>
+
+			<div class="panel-body">
+				<input type="hidden" th:field="*{id}" />
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('cliente')} ? 'has-error'">
+					<label for="cliente" class="col-sm-2 control-label">Cliente:</label>
+					<div class="col-sm-3">
+						<select disabled="disabled" th:field="*{cliente}" id="cliente" class="form-control">
+							<option value=""></option>
+							<option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+								th:text="${cliente.nome}"></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('cep')} ? 'has-error'">
+					<label for="cep" class="col-sm-2 control-label">CEP:</label>
+					<div class="col-sm-1">
+						<input id="cep" class="form-control" th:field="*{cep}" />
+					</div>
+					<span id="loading" hidden="hidden" class="col-sm-1 text-left">
+						<img alt="Carregando" th:src="@{/images/loading.gif}" />
+					</span>
+				</div>
+
+
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('logradouro')} ? 'has-error'">
+					<label for="logradouro" class="col-sm-2 control-label">Logradouro:</label>
+					<div class="col-sm-3">
+						<input id="logradouro" class="form-control"
+							th:field="*{logradouro}"
+							placeholder="Rua,Avenida,Estrada,Travessa..." />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('complemento')} ? 'has-error'">
+					<label for="complemento" class="col-sm-2 control-label">Complemento:</label>
+					<div class="col-sm-4">
+						<input id="complemento" class="form-control"
+							th:field="*{complemento}" placeholder="Apartamento,Bloco..." />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('cidade')} ? 'has-error'">
+					<label for="cidade" class="col-sm-2 control-label">Cidade:</label>
+					<div class="col-sm-3">
+						<input id="cidade" class="form-control" th:field="*{cidade}" />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('estado')} ? 'has-error'">
+					<label for="estado" class="col-sm-2 control-label">Estado:</label>
+					<div class="col-sm-1">
+						<input id="estado" class="form-control" th:field="*{estado}" />
+					</div>
+				</div>
+
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('bairro')} ? 'has-error'">
+					<label for="bairro" class="col-sm-2 control-label">Bairro:</label>
+					<div class="col-sm-2">
+						<input id="bairro" class="form-control" th:field="*{bairro}" />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tipo')} ? 'has-error'">
+					<label for="tipo" class="col-sm-2 control-label">Tipo
+						Endereço:</label>
+					<div class="col-sm-2">
+						<select class="form-control" id="tipo" th:field="*{tipo}">
+							<option value="" selected="selected">Selecione</option>
+							<option th:each="tipo : ${tiposEndereco}" th:value="${tipo}"
+								th:text="${tipo.descricao}"></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('numero')} ? 'has-error'">
+					<label for="numero" class="col-sm-2 control-label">Numero:</label>
+					<div class="col-sm-1">
+						<input id="numero" class="form-control" th:field="*{numero}" />
+					</div>
+				</div>
+
+			</div>
+			<!-- .panel-body -->
+
+			<div class="panel-footer">
+				<div class="clearfix">
+					<div class="aw-link-panel">
+						<button type="reset" class="btn btn-default">Limpar</button>
+						<button type="submit" class="btn btn-success">Salvar
+							Endereço</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</form>
+</section>
+</html>

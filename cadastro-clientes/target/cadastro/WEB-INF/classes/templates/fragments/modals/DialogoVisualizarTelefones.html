@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="modal fade" id="telefones" tabindex="-1"
+	data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Teste</h4>
+			</div>
+
+			<div class="modal-body">
+
+
+				<div class="table-responsive">
+					<table id="tableTelefones"
+						class="table table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th class="col-sm-1">#</th>
+								<th class="col-sm-2">Número</th>
+								<th class="col-sm-1">Tipo</th>
+								<th class="col-sm-2">Cliente</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr id="trAviso">
+								<td colspan="4">Está cliente não possui telefones</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal">
+					<span class="glyphicon glyphicon-ok"></span>Ok
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/layout/LayoutDefault">
+<head>
+<title>Listagem telefones</title>
+</head>
+<section layout:fragment="conteudo">
+
+	<div layout:include="/messages/MensagemGeral"></div>
+
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h1 class="panel-title">
+				<strong>Listagem telefones</strong>
+			</h1>
+		</div>
+
+		<div class="panel-body">
+			<form method="GET" class="form-horizontal" th:action="@{/telefones}"
+				th:object="${filtro}">
+				<div class="form-group">
+					<div class="col-sm-3">
+						<div class="input-group">
+							<input id="campoTelefone" class="form-control"
+								placeholder="Qual número de telefone você procura ?"
+								th:field="*{filtro}" /> <span class="input-group-btn">
+								<button type="submit" class="btn btn-default"
+									data-toggle="popover" title="Info" data-placement="top"
+									data-content="Filtre aqui um cliente...">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="col-sm-2">Número</th>
+							<th class="col-sm-1 text-center">Tipo</th>
+							<th class="col-sm-2">Cliente</th>
+							<th class="col-sm-1"></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="tel : ${telefones}">
+							<td th:text="${tel.numero}"></td>
+							<td class="text-center" th:text="${tel.tipo.descricao}"></td>
+							<td th:text="${tel.cliente.nome}"></td>
+							<td class="text-center"><a class="btn btn-link btn-xs"
+								title="Excluir telefone" rel="tooltip" data-placment="top"
+								data-toggle="modal" data-target="#confirmacaoExclusaoTelefone"
+								th:attr="data-id=${tel.id}, data-cliente=${tel.cliente.nome},
+													data-telefone=${tel.numero}">
+									<span class="glyphicon glyphicon-remove"></span>
+							</a> <a class="btn btn-link btn-xs" rel="tooltip"
+								th:href="@{/telefones/consulta/{id}(id=${tel.id})}"
+								data-toogle="toolip" title="Editar telefone"> <span
+									class="glyphicon glyphicon-edit"></span>
+							</a></td>
+						</tr>
+
+						<tr th:if="${#lists.isEmpty(telefones)}">
+							<td colspan="3">Nenhum telefone foi adicionado até o
+								momento!</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="clearfix">
+				<span class="aw-link-panel"> Total de registros: <strong
+					style="margin-left: 5px"> <span
+						th:text="${telefones.size()}"></span>
+				</strong>
+				</span>
+			</div>
+		</div>
+		<div layout:include="/fragments/modals/DialogoExclusaoTelefone"></div>
+		<div layout:include="/fragments/modals/DialogoExclusaoEndereco"></div>
+	</div>
+</section>
+</html>
