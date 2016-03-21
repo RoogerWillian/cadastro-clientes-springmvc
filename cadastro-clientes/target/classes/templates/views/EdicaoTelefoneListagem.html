@@ -40,9 +40,9 @@
 							
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('numero')} ? 'has-error'">
-					<label for="numero" class="col-sm-1 control-label">Número:</label>
+					<label for="campoTelefone" class="col-sm-1 control-label">Número:</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" th:field="*{numero}" />
+						<input id="campoTelefone" type="text" class="form-control" th:field="*{numero}" />
 					</div>
 				</div>
 				

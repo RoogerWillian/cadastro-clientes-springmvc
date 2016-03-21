@@ -10,12 +10,7 @@ $('#campoCep').on('blur', function() {
 			crossDomain : true,
 			method : 'GET',
 			beforeSend : function(){
-				$.notify(
-					{
-						icon: 'glyphicon glyphicon-warning-sign',
-						message: 'Buscando CEP: ' + '<strong>' + cep + '</strong>'
-					}
-				)
+				$.growl.error({ title: 'CEP', message: 'Buscando informações do cep: ' + cep });
 			},
 			success : function(data) {
 				if (!data.erro) {				
