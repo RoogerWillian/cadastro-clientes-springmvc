@@ -58,7 +58,6 @@ $('#modalVisualizarTelefones').on('show.bs.modal',function(event){
 
 
 $('#modalVisualizarTelefones').on('hide.bs.modal',function(event){
-	console.log('Fechou modal');
 	$('.tr-data').remove();
 });
 

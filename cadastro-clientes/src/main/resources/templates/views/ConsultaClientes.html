@@ -46,13 +46,13 @@
 					<thead>
 						<tr>
 							<th class="col-sm-1">#</th>
-							<th class="col-sm-3">Nome</th>
+							<th class="col-sm-2">Nome</th>
 							<th class="col-sm-2 text-left">CPF</th>
 							<th class="col-sm-1 text-center">Nascimento</th>
 							<th class="col-sm-1 text-center">Data de Cadastro</th>
 							<th class="col-sm-2">E-mail</th>
 							<th class="col-sm-1 text-center">Status</th>
-							<th class="col-sm-1"></th>
+							<th class="col-sm-2"></th>
 						</tr>
 					</thead>
 
@@ -70,6 +70,15 @@
 							</td>
 
 							<td class="text-center">
+								
+								<a class="btn btn-link btn-xs" data-toggle="modal"
+									title="Visualizar enderecos" rel="tooltip"
+									data-placment="top" data-target="#modalVisualizarEnderecos"
+									th:attr="data-id-cliente=${cliente.id}, data-cliente=${cliente.nome}"> 
+									<span class="glyphicon glyphicon-eye-open"></span>
+								</a>
+								
+								
 								<a class="btn btn-link btn-xs" data-toggle="modal"
 									title="Visualizar telefones" rel="tooltip"
 									data-placment="top" data-target="#modalVisualizarTelefones"

@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<div class="modal fade" id="enderecos" tabindex="-1"
+<div class="modal fade bs-example-modal-lg" id="modalVisualizarEnderecos" tabindex="-1"
 	data-keyboard="false" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -12,7 +12,7 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title"></h4>
+				<h4 class="modal-title">Titulo</h4>
 			</div>
 
 			<div class="modal-body">
@@ -22,7 +22,7 @@
 						<thead>
 							<tr>
 								<th class="col-sm-1 text-center">CEP</th>
-								<th class="col-sm-3">Logradouro</th>
+								<th class="col-sm-5">Logradouro</th>
 								<th class="col-sm-2">Bairro</th>
 								<th class="col-sm-1 text-center">Número</th>
 								<th class="col-sm-2">Cidade</th>
@@ -32,9 +32,6 @@
 						</thead>
 
 						<tbody>
-							<tr id="trAviso">
-								<td colspan="7">Está cliente não possui endereços</td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
