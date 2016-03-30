@@ -8,13 +8,13 @@ br\com\vsm\cadastro\filter\ClienteFilter.class
 br\com\vsm\cadastro\CadastroClientesApplication$MvcConfig.class
 br\com\vsm\cadastro\model\Cliente.class
 br\com\vsm\cadastro\filter\EnderecoFilter.class
-br\com\vsm\cadastro\controllers\AuxiliarControler.class
 br\com\vsm\cadastro\model\Endereco.class
 br\com\vsm\cadastro\repository\TelefoneRepository.class
 br\com\vsm\cadastro\service\ClienteService.class
 br\com\vsm\cadastro\controllers\TelefoneController.class
 br\com\vsm\cadastro\repository\EnderecoRepository.class
 br\com\vsm\cadastro\model\Telefone.class
+br\com\vsm\cadastro\controllers\RestController.class
 br\com\vsm\cadastro\repository\ClienteRepository.class
 br\com\vsm\cadastro\model\StatusCliente.class
 br\com\vsm\cadastro\model\TipoTelefone.class

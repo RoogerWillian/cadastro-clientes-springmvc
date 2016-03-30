@@ -63,3 +63,7 @@ body {
 .navbar li a {
 	font-weight: bolder;
 }
+
+.margin-telefone {
+	margin-right: 10px;	
+}

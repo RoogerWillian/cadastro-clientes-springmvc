@@ -4,13 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="/layout/LayoutDefault">
 <head>
-<title>Cadastro de endereco</title>
+<title>Edição de endereços</title>
 </head>
 <section layout:fragment="conteudo">
-	<form th:action="@{/enderecos/consulta/save}" method="POST"
+	<form th:action="@{/enderecos/consulta/save/{id}(id=${endereco.cliente.id})}" method="POST"
 		class="form-horizontal" th:object="${endereco}">
 		<div layout:include="/messages/MensagemErro"></div>
 		<div layout:include="/messages/MensagemGeral"></div>
+		<div layout:include="/messages/MensagemWarning"></div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">

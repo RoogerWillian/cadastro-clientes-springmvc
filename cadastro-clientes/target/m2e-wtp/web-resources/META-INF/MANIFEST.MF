@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: cadastro-clientes
-Implementation-Version: 1.0.0-SNAPSHOT
-Built-By: roger
-Implementation-Vendor-Id: br.com.vsm
-Build-Jdk: 1.8.0_73
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
-

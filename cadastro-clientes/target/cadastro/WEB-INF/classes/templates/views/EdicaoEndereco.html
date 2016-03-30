@@ -7,10 +7,11 @@
 <title>Cadastro de endereco</title>
 </head>
 <section layout:fragment="conteudo">
-	<form th:action="@{/enderecos/save}" method="POST"
+	<form th:action="@{/enderecos/save/{id}(id=${endereco.cliente.id})}" method="POST"
 		class="form-horizontal" th:object="${endereco}">
 		<div layout:include="/messages/MensagemErro"></div>
 		<div layout:include="/messages/MensagemGeral"></div>
+		<div layout:include="/messages/MensagemWarning"></div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">
