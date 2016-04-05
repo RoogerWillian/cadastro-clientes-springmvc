@@ -63,7 +63,9 @@ public class ClienteController {
 			attrs.addFlashAttribute("mensagem", "Cliente " + cliente.getNome().toUpperCase() + " salvo com sucesso!");
 			return "redirect:/clientes/";
 		} catch (Exception e) {
-			attrs.addFlashAttribute("mensagem","CPF já cadastrado para outro cliente, tente novamente!");
+			attrs.addFlashAttribute("mensagemW","CPF já cadastrado para outro cliente, tente novamente!");
+			cliente.setCpf("");
+			attrs.addFlashAttribute("cliente", cliente);
 			return "redirect:/clientes/novo";
 		} 
 	}

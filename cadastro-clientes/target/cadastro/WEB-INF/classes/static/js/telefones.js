@@ -23,6 +23,9 @@ $('#confirmacaoExclusaoTelefone').on('show.bs.modal',function(event) {
 $('#modalVisualizarTelefones').on('show.bs.modal',function(event){
 	var button = $(event.relatedTarget);
 	
+	button.preventDefault();
+	var baseConsulta = button.attr('href');
+	
 	var modal = $(this);
 	var idCliente = button.data('id-cliente');
 	var nomeCliente = button.data('cliente');
@@ -31,7 +34,7 @@ $('#modalVisualizarTelefones').on('show.bs.modal',function(event){
 			'Telefones ' + '| ' + '<strong>'+nomeCliente+'</strong>' 
 	);
 	
-	$.get('/rest/telefones/' + idCliente, function(data){
+	$.get(baseConsulta + idCliente, function(data){
 		if(!isArrayEmpty(data)){
 			$.each(data,function(){
 				var telefone = this;

@@ -52,6 +52,8 @@ $('#confirmacaoExclusaoEndereco').on('show.bs.modal',function(event) {
 $('#modalVisualizarEnderecos').on('show.bs.modal',function(event){
 	var button = $(event.relatedTarget);
 	
+	var baseConsulta = button.attr('href');
+	
 	var modal = $(this);
 	var idCliente = button.data('id-cliente');
 	var nomeCliente = button.data('cliente');
@@ -61,7 +63,7 @@ $('#modalVisualizarEnderecos').on('show.bs.modal',function(event){
 			'Endereços ' + '| ' + '<strong>'+nomeCliente+'</strong>' 
 	);
 	
-	$.get('/rest/enderecos/' + idCliente,function(data){
+	$.get(baseConsulta + idCliente,function(data){
 		if(!isArrayEmpty(data)){
 			$.each(data,function(){
 				var endereco = this;
